@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>JanelaPrincipal</class>
+ <widget class="QMainWindow" name="JanelaPrincipal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>974</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Simulador de Sistemas Operacionais</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f6f8;
+}
+QGroupBox {
+    font-weight: bold;
+    border: 1px solid #d0d3d8;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 8px;
+    background-color: #ffffff;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+    color: #2c3e50;
+}
+QPushButton {
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+QPushButton#botaoExecutar {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+QPushButton#botaoExecutar:hover {
+    background-color: #3498db;
+}
+QPushButton#botaoExecutar:disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+}
+QPushButton#botaoSelecionarCSV {
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    color: #2c3e50;
+}
+QPushButton#botaoSelecionarCSV:hover {
+    background-color: #dfe6e9;
+}
+QPushButton#botaoLimpar {
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    color: #7f8c8d;
+}
+QPushButton#botaoLimpar:hover {
+    background-color: #dfe6e9;
+}
+QTableWidget {
+    border: 1px solid #d0d3d8;
+    border-radius: 4px;
+    gridline-color: #ecf0f1;
+    background-color: #ffffff;
+}
+QTableWidget::item {
+    padding: 4px;
+}
+QHeaderView::section {
+    background-color: #f0f2f5;
+    border: none;
+    border-bottom: 1px solid #d0d3d8;
+    border-right: 1px solid #d0d3d8;
+    padding: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+QLabel#labelTMR, QLabel#labelTME, QLabel#labelPageFaults {
+    font-size: 13px;
+    padding: 6px 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e3e8;
+    border-radius: 4px;
+    color: #2c3e50;
+}
+QTextEdit {
+    border: 1px solid #d0d3d8;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    background-color: #fafbfc;
+}
+QSpinBox, QComboBox {
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    padding: 4px 6px;
+    background-color: white;
+    min-height: 24px;
+}
+QTabWidget::pane {
+    border: 1px solid #d0d3d8;
+    border-radius: 4px;
+    background: white;
+}
+QTabBar::tab {
+    padding: 6px 16px;
+    border: 1px solid #d0d3d8;
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: #ecf0f1;
+    color: #7f8c8d;
+}
+QTabBar::tab:selected {
+    background: white;
+    color: #2c3e50;
+    font-weight: bold;
+}
+QScrollArea {
+    border: none;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="layoutPrincipal">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>12</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
+    <property name="bottomMargin">
+     <number>12</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="labelTitulo">
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px;
+font-weight: bold; color: #2c3e50; padding: 4px 0;</string>
+      </property>
+      <property name="text">
+       <string>Simulador de Sistemas Operacionais — Gerenciamento de Processos e Memória</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="layoutSuperior">
+      <property name="spacing">
+       <number>8</number>
+      </property>
+      <item>
+       <widget class="QGroupBox" name="grupoConfiguracao">
+        <property name="title">
+         <string>Configuração</string>
+        </property>
+        <layout class="QVBoxLayout" name="layoutConfig">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <property name="leftMargin">
+          <number>12</number>
+         </property>
+         <property name="topMargin">
+          <number>14</number>
+         </property>
+         <property name="rightMargin">
+          <number>12</number>
+         </property>
+         <property name="bottomMargin">
+          <number>12</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Arquivo de Processos (CSV):</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="botaoSelecionarCSV">
+           <property name="text">
+            <string>Selecionar arquivo CSV...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelStatusCSV">
+           <property name="styleSheet">
+            <string notr="true">color: #888;
+font-size: 11px;</string>
+           </property>
+           <property name="text">
+            <string>Nenhum arquivo carregado.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="frameShape">
+            <enum>QFrame::HLine</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QFormLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Memória Física (MB):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinMemoriaFisica">
+             <property name="minimum">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <number>8192</number>
+             </property>
+             <property name="singleStep">
+              <number>4</number>
+             </property>
+             <property name="value">
+              <number>64</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Memória Virtual (MB):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="spinMemoriaVirtual">
+             <property name="minimum">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <number>65536</number>
+             </property>
+             <property name="singleStep">
+              <number>16</number>
+             </property>
+             <property name="value">
+              <number>256</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="frameShape">
+            <enum>QFrame::HLine</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Política de Escalonamento:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboEscalonamento">
+           <item>
+            <property name="text">
+             <string>Round-Robin (RR)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SJF Preemptivo</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Prioridade Preemptiva</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout">
+           <item>
+            <widget class="QLabel" name="labelQuantum">
+             <property name="text">
+              <string>Quantum:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinQuantum">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="frameShape">
+            <enum>QFrame::HLine</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Política de Substituição:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboSubstituicao">
+           <item>
+            <property name="text">
+             <string>FIFO</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LRU</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ótimo</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="frameShape">
+            <enum>QFrame::HLine</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="botaoExecutar">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>▶  Executar Simulação</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="botaoLimpar">
+           <property name="text">
+            <string>Limpar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="grupoProcessos">
+        <property name="title">
+         <string>Processos Carregados</string>
+        </property>
+        <layout class="QVBoxLayout" name="layoutProcessos">
+         <property name="leftMargin">
+          <number>8</number>
+         </property>
+         <property name="topMargin">
+          <number>14</number>
+         </property>
+         <property name="rightMargin">
+          <number>8</number>
+         </property>
+         <property name="bottomMargin">
+          <number>8</number>
+         </property>
+         <item>
+          <widget class="QTableWidget" name="tabelaProcessos">
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="columnCount">
+            <number>5</number>
+           </property>
+           <column>
+            <property name="text">
+             <string>Processo</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Chegada</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Execução</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Prioridade</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Memória</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="grupoResultados">
+      <property name="title">
+       <string>Resultados</string>
+      </property>
+      <layout class="QVBoxLayout" name="layoutResultados">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>14</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="layoutMetricas">
+         <property name="spacing">
+          <number>8</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="labelTMR">
+           <property name="text">
+            <string>Tempo Médio de Resposta: —</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelTME">
+           <property name="text">
+            <string>Tempo Médio de Espera: —</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelPageFaults">
+           <property name="text">
+            <string>Total de Page Faults: —</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTabWidget" name="abaResultados">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="abaLinhaDoTempo">
+          <attribute name="title">
+           <string>Linha do Tempo</string>
+          </attribute>
+          <layout class="QVBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QScrollArea" name="scrollLinhaDoTempo">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="conteudoScroll">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>908</width>
+                <height>190</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="layoutScroll">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="WidgetLinhaDoTempo" name="widgetLinhaDoTempo" native="true"/>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="abaRelatorio">
+          <attribute name="title">
+           <string>Relatório Detalhado</string>
+          </attribute>
+          <layout class="QVBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QTextEdit" name="textRelatorio">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetLinhaDoTempo</class>
+   <extends>QWidget</extends>
+   <header>widgetLinhaDoTempo.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
